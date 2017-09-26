@@ -1,9 +1,23 @@
 # coding: utf-8
 
 class Enemy < Sprite
+  def initialize(x, y, image)
+    super
+    @dx = rand(2) * 2 - 1 
+    @dy = rand(2) * 2 - 1
+  end
+
   def update
-    self.y += 1
-    if self.y >= Window.height - self.image.height
+    self.x += @dx
+    self.y += @dy
+    #self.y += 1
+    #self.x += 1
+
+    if self.x >= Window.width - self.image.width || self.x <= 0
+      self.vanish
+    end
+
+    if self.y >= Window.height - self.image.height || self.y <= 0
       self.vanish
     end
   end
